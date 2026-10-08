@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KineticIn | LinkedIn Personal Branding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0b1326;
+      color: #dae2fd;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+
+    :root {
+      --bg: #0b1326;
+      --bg-dark: #060e20;
+      --bg-footer: #131b2e;
+      --surface: #171f33;
+      --surface-2: #222a3d;
+      --surface-3: #2d3449;
+      --text: #dae2fd;
+      --text-2: #c1c6d4;
+      --text-3: #8b919e;
+      --accent: #a8c8ff;
+      --accent-2: #7bd0ff;
+      --blue: #0a66c2;
+      --on-blue: #003062;
+      --error: #ffb4ab;
+    }
+
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; }
+    .section { position: relative; overflow: hidden; }
+    .section-pad { padding: 96px 0; }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--surface-2);
+      color: var(--accent);
+      font: 700 10px/14px 'Inter', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 4px;
+    }
+    .h2 {
+      font: 700 40px/48px 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -1px;
+      color: var(--text);
+    }
+    .h3 {
+      font: 700 18px/24px 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.18px;
+      color: var(--text);
+    }
+    .lead { font-size: 15px; line-height: 24px; color: var(--text-2); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 8px; font: 700 14px/20px 'Inter', sans-serif; letter-spacing: 0.14px;
+      cursor: pointer; border: 0; transition: transform .15s ease, filter .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .btn-primary { background: var(--blue); color: var(--on-blue); padding: 14px 28px; box-shadow: 0 20px 25px -5px rgba(10,102,194,.25), 0 8px 10px -6px rgba(10,102,194,.25); }
+    .btn-secondary { background: var(--surface-2); color: var(--text); font-weight: 600; padding: 14px 24px; }
+    .btn-light { background: var(--accent); color: var(--on-blue); padding: 12px 24px; }
+    .btn-badge {
+      background: rgba(6,14,32,.8); color: var(--accent-2);
+      font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .5px;
+      padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero { padding: 112px 0 96px; }
+    .glow-main {
+      position: absolute; left: 50%; top: -128px; transform: translateX(-50%);
+      width: 720px; height: 480px; border-radius: 9999px;
+      background: rgba(10,102,194,.2); filter: blur(70px); pointer-events: none;
+    }
+    .glow-side {
+      position: absolute; right: -192px; top: 33%; width: 384px; height: 384px;
+      border-radius: 9999px; background: rgba(0,83,219,.15); filter: blur(60px); pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 32px; align-items: center; position: relative;
+    }
+    .hero-left { display: flex; flex-direction: column; gap: 24px; }
+    .badge-pill {
+      display: inline-flex; align-items: center; gap: 4px; align-self: flex-start;
+      background: rgba(34,42,61,.9); padding: 6px 16px; border-radius: 9999px;
+      font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--accent);
+    }
+    .hero-title {
+      font: 800 56px/64px 'Plus Jakarta Sans', sans-serif; letter-spacing: -1.4px; color: var(--text);
+    }
+    .grad-text {
+      background: linear-gradient(90deg, #a8c8ff 0%, #7bd0ff 50%, #0a66c2 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .underline-accent { text-decoration: underline; text-decoration-thickness: 4px; text-decoration-color: rgba(168,200,255,.4); text-underline-offset: 6px; color: var(--accent); }
+    .hero-sub { font-size: 18px; line-height: 28px; color: var(--text-2); letter-spacing: -.18px; max-width: 576px; }
+    .hero-sub2 { font-size: 15px; line-height: 24px; color: var(--text-3); font-weight: 500; letter-spacing: .375px; max-width: 680px; }
+    .ctas { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; padding-top: 4px; }
+    .cta-audit { position: relative; }
+    .cta-audit .btn-primary { padding: 14px 28px; }
+    .metrics-pill { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; padding-top: 8px; }
+    .metric { display: flex; align-items: center; gap: 8px; font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .24px; color: var(--text-2); }
+    .pulse { position: relative; width: 10px; height: 10px; }
+    .pulse::before, .pulse::after {
+      content: ""; position: absolute; inset: 0; border-radius: 9999px; background: var(--accent-2);
+    }
+    .pulse::before { opacity: .75; animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite; }
+    @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+
+    .telemetry {
+      position: relative; background: var(--bg-footer); border-radius: 12px; padding: 24px;
+      backdrop-filter: blur(12px); box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+    }
+    .tele-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; gap: 12px; }
+    .tele-brand { display: flex; align-items: center; gap: 12px; }
+    .tele-icon { width: 40px; height: 40px; border-radius: 9999px; background: rgba(10,102,194,.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tele-title { font: 700 18px/22px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.18px; color: var(--text); }
+    .tele-sub { font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .5px; text-transform: uppercase; color: var(--text-3); margin-top: 2px; }
+    .live-tag {
+      background: rgba(123,208,255,.1); color: var(--accent-2); padding: 4px 10px; border-radius: 9999px;
+      font: 600 10px/14px 'Inter', sans-serif; letter-spacing: .6px; display: inline-flex; gap: 4px; align-items: center; white-space: nowrap;
+    }
+    .live-tag .dot { width: 6px; height: 6px; border-radius: 9999px; background: var(--accent-2); }
+    .profile-snip {
+      background: var(--surface); border-radius: 8px; padding: 14px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .profile-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .avatar { width: 44px; height: 44px; border-radius: 9999px; object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1); }
+    .avatar-48 { width: 48px; height: 48px; }
+    .profile-name { font: 600 14px/20px 'Inter', sans-serif; color: var(--text); display: flex; gap: 6px; align-items: center; }
+    .profile-role { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+    .tag-reach { background: var(--surface-3); color: var(--accent); padding: 4px 8px; border-radius: 4px; font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .6px; white-space: nowrap; }
+    .compare { display: flex; gap: 12px; padding: 20px 0; }
+    .compare-box { flex: 1; min-width: 0; padding: 16px; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; position: relative; overflow: hidden; }
+    .compare-before { background: rgba(6,14,32,.8); }
+    .compare-after { background: rgba(10,102,194,.2); }
+    .compare-label { font: 600 10px/14px 'Inter', sans-serif; letter-spacing: .5px; text-transform: uppercase; color: var(--text-3); }
+    .compare-after .compare-label { font-weight: 700; color: var(--accent); }
+    .compare-val { font: 700 20px/28px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.3px; color: var(--text-2); }
+    .compare-val.big { font-weight: 800; color: var(--accent); }
+    .compare-val .strike { text-decoration: line-through; }
+    .compare-note { display: flex; gap: 4px; align-items: center; font: 500 13px/20px 'Inter', sans-serif; color: var(--text-3); }
+    .compare-after .compare-note { color: var(--accent-2); font-weight: 600; }
+    .compare-glow { position: absolute; right: -24px; top: -24px; width: 64px; height: 64px; border-radius: 9999px; background: rgba(168,200,255,.2); filter: blur(12px); }
+    .spark-card { background: var(--surface); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .spark-head { display: flex; justify-content: space-between; align-items: center; }
+    .spark-title { font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .24px; color: var(--text); }
+    .spark-delta { font: 700 12px/16px 'Inter', sans-serif; letter-spacing: .24px; color: var(--accent-2); }
+    .spark-svg { height: 64px; width: 100%; }
+    .spark-labels { display: flex; justify-content: space-between; padding-top: 4px; font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--text-2); gap: 8px; flex-wrap: wrap; }
+    .trust-strip { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; gap: 12px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 4px; font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--text-3); }
+
+    /* ---------- RESULTS ---------- */
+    .results { background: var(--bg-dark); padding: 80px 0; }
+    .section-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 672px; margin: 0 auto; }
+    .section-head p.lead { max-width: 640px; }
+    .kpi-strip { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; padding-top: 16px; }
+    .kpi {
+      background: var(--bg-footer); border-radius: 12px; padding: 24px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+    }
+    .kpi-num { font: 800 40px/48px 'Plus Jakarta Sans', sans-serif; letter-spacing: -1px; }
+    .kpi-label { font: 600 18px/24px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.18px; color: var(--text); padding-top: 4px; }
+    .kpi-desc { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-3); padding-top: 4px; max-width: 260px; }
+    .kpi-glow { position: absolute; right: -48px; top: -48px; width: 112px; height: 112px; border-radius: 9999px; background: rgba(168,200,255,.1); filter: blur(20px); }
+    .outcome-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; width: 100%; }
+    .card {
+      background: var(--surface); border-radius: 12px; padding: 24px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+    }
+    .card-wide { grid-column: span 2; }
+    .card-icon { width: 48px; height: 48px; border-radius: 8px; background: var(--surface-3); display: flex; align-items: center; justify-content: center; }
+    .card-head { display: flex; flex-direction: column; gap: 12px; }
+    .card-body { font: 400 15px/24px 'Inter', sans-serif; color: var(--text-2); letter-spacing: -.075px; }
+    .card-foot { display: flex; align-items: center; gap: 8px; font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .24px; }
+    .closing-banner {
+      background: linear-gradient(90deg, #222a3d 0%, #171f33 50%, #222a3d 100%);
+      border-radius: 12px; padding: 32px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+    }
+    .closing-left { display: flex; align-items: center; gap: 16px; }
+    .closing-icon { width: 48px; height: 48px; border-radius: 9999px; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .closing-title { font: 700 18px/24px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.18px; color: var(--text); }
+    .closing-desc { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-2); }
+    .btn-accent { background: var(--accent); color: var(--on-blue); font: 700 14px/20px 'Inter', sans-serif; letter-spacing: .14px; padding: 12px 24px; border-radius: 8px; }
+
+    /* ---------- AUDIT ---------- */
+    .audit { padding: 96px 24px; background: var(--bg); }
+    .audit-card {
+      position: relative; overflow: hidden; border-radius: 16px; padding: 56px;
+      background: linear-gradient(180deg, #222a3d 0%, #131b2e 100%);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+      max-width: 1280px; margin: 0 auto;
+    }
+    .audit-glow { position: absolute; right: -128px; top: -128px; width: 384px; height: 384px; border-radius: 9999px; background: rgba(10,102,194,.3); filter: blur(32px); pointer-events: none; }
+    .audit-grid { display: grid; grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 48px; align-items: center; position: relative; }
+    .audit-left { display: flex; flex-direction: column; gap: 16px; }
+    .pricing-pill {
+      position: relative; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+      padding: 6px 14px; border-radius: 9999px; background: rgba(10,102,194,.2);
+      font: 700 12px/16px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--accent);
+    }
+    .pricing-pill .dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--accent-2); }
+    .audit-h2 { font: 800 40px/48px 'Plus Jakarta Sans', sans-serif; letter-spacing: -1px; color: var(--text); }
+    .audit-sub { font-size: 18px; line-height: 28px; color: var(--text-2); letter-spacing: -.18px; }
+    .pillars { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; padding-top: 16px; }
+    .pillar { background: var(--surface); border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; min-height: 92px; }
+    .pillar img { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+    .pillar-title { font: 600 14px/20px 'Inter', sans-serif; letter-spacing: .14px; color: var(--text); }
+    .pillar-desc { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-2); }
+    .quote-box { background: rgba(6,14,32,.9); border-radius: 8px; padding: 20px; margin-top: 16px; }
+    .quote-box p { font: italic 400 15px/24px 'Inter', sans-serif; letter-spacing: -.075px; color: var(--text); }
+    .audit-actions { display: flex; align-items: center; gap: 16px; padding-top: 8px; flex-wrap: wrap; }
+    .audit-actions .btn-primary { padding: 16px 32px; }
+    .audit-note { display: flex; align-items: center; gap: 8px; font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--text-3); }
+
+    .telemetry-audit {
+      background: rgba(6,14,32,.8); backdrop-filter: blur(6px); border-radius: 12px; padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,.25); max-width: 448px; width: 100%; justify-self: center;
+    }
+    .telemetry-audit .tele-head { padding-bottom: 16px; }
+    .diag-label { font: 700 12px/16px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--text); }
+    .diag-value { background: rgba(0,111,151,.3); color: var(--accent-2); padding: 2px 8px; border-radius: 4px; font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .6px; white-space: nowrap; }
+    .gauges { display: flex; flex-direction: column; gap: 16px; padding: 12px 0 36px; }
+    .gauge-row { display: flex; flex-direction: column; gap: 4px; }
+    .gauge-top { display: flex; justify-content: space-between; gap: 12px; font: 500 13px/20px 'Inter', sans-serif; color: var(--text-2); }
+    .gauge-top b { font-weight: 700; }
+    .gauge-track { height: 8px; background: var(--surface-3); border-radius: 9999px; overflow: hidden; }
+    .gauge-fill { height: 100%; border-radius: 9999px; }
+    .diag-foot { display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(34,42,61,.6); border-radius: 8px; }
+    .diag-foot strong { display: block; font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .24px; color: var(--text); }
+    .diag-foot span { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-2); }
+
+    /* ---------- LEAD FORM ---------- */
+    .lead-section { background: var(--bg-dark); padding: 96px 0; }
+    .lead-grid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 48px; align-items: center; }
+    .lead-left { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 16px; }
+    .lead-right { grid-column: 7 / span 6; }
+    .lead-h2 { font: 700 40px/48px 'Plus Jakarta Sans', sans-serif; letter-spacing: -1px; color: var(--text); }
+    .lead-intro { font-size: 18px; line-height: 28px; color: var(--text-2); letter-spacing: -.18px; }
+    .pitch-list { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
+    .pitch-item { display: flex; gap: 14px; align-items: flex-start; }
+    .pitch-icon { width: 32px; height: 32px; border-radius: 9999px; background: rgba(168,200,255,.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .pitch-title { font: 600 18px/24px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.18px; color: var(--text); }
+    .pitch-desc { font: 400 15px/24px 'Inter', sans-serif; color: var(--text-2); letter-spacing: -.075px; }
+    .trust-line { display: inline-flex; align-items: center; gap: 12px; background: var(--surface); padding: 16px; border-radius: 8px; margin-top: 16px; align-self: flex-start; }
+    .trust-line span { font: 500 14px/20px 'Inter', sans-serif; letter-spacing: .14px; color: var(--text); }
+
+    .form-card {
+      background: var(--surface-2); border-radius: 16px; padding: 40px;
+      display: flex; flex-direction: column; gap: 24px; position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+    }
+    .form-head { display: flex; flex-direction: column; gap: 4px; }
+    .form-title { font: 700 20px/28px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.3px; color: var(--text); }
+    .form-sub { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-2); }
+    form { display: flex; flex-direction: column; gap: 20px; }
+    .field { display: flex; flex-direction: column; gap: 8px; padding-top: 5.5px; }
+    .field label { font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .24px; color: var(--text); }
+    .input-wrap { position: relative; }
+    .input-wrap img { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; pointer-events: none; }
+    .input-wrap input {
+      width: 100%; background: var(--bg-dark); border: 1px solid transparent; border-radius: 8px;
+      padding: 14px 16px 14px 44px; color: var(--text); font: 400 15px/20px 'Inter', sans-serif; letter-spacing: -.075px;
+      outline: none; transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .input-wrap input::placeholder { color: rgba(139,145,158,.7); }
+    .input-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(168,200,255,.15); }
+    .submit-btn { width: 100%; background: var(--blue); color: var(--on-blue); padding: 16px 24px; box-shadow: 0 10px 15px -3px rgba(10,102,194,.25), 0 4px 6px -4px rgba(10,102,194,.25); }
+    .submit-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; filter: none; }
+    .micro { text-align: center; font: 700 10px/14px 'Inter', sans-serif; letter-spacing: .6px; text-transform: uppercase; color: var(--text-3); padding-top: 4px; }
+    .form-status { font: 600 13px/20px 'Inter', sans-serif; text-align: center; min-height: 20px; }
+    .form-status.ok { color: var(--accent-2); }
+    .form-status.err { color: var(--error); }
+
+    /* ---------- REVIEWS ---------- */
+    .reviews { background: var(--bg); padding: 96px 0; }
+    .reviews-wrap { display: flex; flex-direction: column; gap: 56px; align-items: center; }
+    .reviews-head { display: flex; flex-direction: column; align-items: center; gap: 8px; max-width: 672px; text-align: center; }
+    .reviews-head p.lead { max-width: 640px; }
+    .testimonials { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; width: 100%; padding-top: 8px; }
+    .testimonial {
+      background: var(--surface); border-radius: 12px; padding: 32px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+    }
+    .stars { display: flex; gap: 4px; }
+    .stars img { width: 15px; height: 14.25px; }
+    .quote { font: 500 18px/29.25px 'Inter', sans-serif; letter-spacing: -.18px; color: var(--text); }
+    .author { display: flex; align-items: center; gap: 16px; padding-top: 24px; }
+    .author-name { font: 700 14px/20px 'Inter', sans-serif; letter-spacing: .14px; color: var(--text); }
+    .author-role { font: 600 12px/16px 'Inter', sans-serif; letter-spacing: .24px; color: var(--text-2); }
+    .reviews-closing { font: 700 18px/24px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.45px; color: var(--text); text-align: center; background: var(--surface-2); padding: 24px; border-radius: 12px; width: 100%; }
+
+    /* ---------- FAQ ---------- */
+    .faq { background: var(--bg-dark); padding: 96px 200px; }
+    .faq-wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px; }
+    .faq-head { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .faq-list { display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      background: var(--surface); border-radius: 12px; padding: 20px;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer;
+      transition: background .15s ease;
+    }
+    .faq-item:hover { background: var(--surface-2); }
+    .faq-item .h3 { font-size: 18px; }
+    .faq-item img { width: 12px; height: 7.4px; flex-shrink: 0; }
+
+    /* ---------- FOOTER ---------- */
+    .footer { background: var(--bg-footer); padding: 64px 0; }
+    .footer-wrap { display: flex; flex-direction: column; gap: 40px; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 40px; gap: 32px; flex-wrap: wrap; }
+    .brand { display: flex; flex-direction: column; gap: 8px; max-width: 448px; }
+    .brand-row { display: flex; align-items: center; gap: 8px; }
+    .brand-name { font: 700 20px/28px 'Plus Jakarta Sans', sans-serif; letter-spacing: -.3px; color: var(--text); }
+    .brand-name span { color: var(--accent); }
+    .brand-tag { font: 400 15px/24px 'Inter', sans-serif; color: var(--text-2); letter-spacing: -.075px; }
+    .quick-links { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .quick-links a { font: 600 14px/20px 'Inter', sans-serif; letter-spacing: .14px; color: var(--text-2); }
+    .quick-links a.hl { color: var(--accent); font-weight: 700; }
+    .quick-links .sep { color: rgba(139,145,158,.4); font-weight: 600; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; gap: 16px; flex-wrap: wrap; }
+    .contact { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font: 400 13px/20px 'Inter', sans-serif; color: var(--text-2); }
+    .contact a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(168,200,255,.4); padding-left: 4px; }
+    .copy { font: 400 13px/20px 'Inter', sans-serif; color: var(--text-3); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1100px) {
+      .faq { padding: 96px 24px; }
+    }
+    @media (max-width: 960px) {
+      .hero-grid, .audit-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 44px; line-height: 52px; }
+      .h2, .audit-h2, .lead-h2 { font-size: 32px; line-height: 40px; }
+      .kpi-strip, .outcome-grid { grid-template-columns: 1fr 1fr; }
+      .card-wide { grid-column: span 2; }
+      .lead-grid { grid-template-columns: 1fr; }
+      .lead-left, .lead-right { grid-column: auto; }
+      .testimonials { grid-template-columns: 1fr; }
+      .audit-card { padding: 36px 28px; }
+    }
+    @media (max-width: 640px) {
+      .section-pad, .hero, .results, .audit, .lead-section, .reviews, .faq { padding-top: 64px; padding-bottom: 64px; }
+      .hero-title { font-size: 36px; line-height: 44px; letter-spacing: -1px; }
+      .h2, .audit-h2, .lead-h2 { font-size: 28px; line-height: 36px; }
+      .kpi-strip, .outcome-grid { grid-template-columns: 1fr; }
+      .card-wide { grid-column: span 1; }
+      .pillars { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 22px; }
+      .closing-banner { padding: 24px; }
+      .compare { flex-direction: column; }
+      .ctas { flex-direction: column; align-items: stretch; }
+      .ctas .btn { width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .faq-item .h3 { font-size: 16px; }
+      .audit-card { padding: 28px 20px; }
+      .telemetry { padding: 18px; }
+      .testimonial { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="section hero">
+    <div class="glow-main"></div>
+    <div class="glow-side"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="badge-pill">
+            <span>⚡</span>
+            <span>0 to Hero Personal Branding Framework</span>
+          </span>
+          <h1 class="hero-title">
+            Turn Your LinkedIn From<br />
+            <span class="grad-text">Invisible</span> to <span class="underline-accent">Influential</span>
+          </h1>
+          <p class="hero-sub">We don't just "optimize profiles." We build your personal brand from scratch — with strategy, content, and consistency that actually gets you seen.</p>
+          <p class="hero-sub2">From 0 to hero on LinkedIn — without confusion, guesswork, or wasting months figuring it out alone.</p>
+
+          <div class="ctas">
+            <a class="btn btn-primary cta-audit"
+               href="https://payments.cashfree.com/forms/getaudit"
+               target="_blank" rel="noopener">
+              <img src="https://www.figma.com/api/mcp/asset/3b210226-7449-4c33-b000-d364ea7b521f.svg" alt="" width="18" height="18" />
+              <span>Get Your Profile Audit</span>
+              <span class="btn-badge">Only ₹1</span>
+            </a>
+            <a class="btn btn-secondary" href="#results">
+              <span>Start Growing Today</span>
+              <img src="https://www.figma.com/api/mcp/asset/eed0dbc6-5e6c-4d63-a901-64a207ba8fc7.svg" alt="" width="12" height="12" />
+            </a>
+          </div>
+
+          <div class="metrics-pill">
+            <div class="metric"><span class="pulse"></span><span>Live cohort slots filling</span></div>
+            <div class="metric">
+              <img src="https://www.figma.com/api/mcp/asset/536e93af-e2b0-4bd0-aaa3-6a86efc81017.svg" alt="" width="12" height="15" />
+              <span>100% Guaranteed Execution</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry preview card -->
+        <aside class="telemetry">
+          <div class="tele-head">
+            <div class="tele-brand">
+              <div class="tele-icon">
+                <img src="https://www.figma.com/api/mcp/asset/a458e2d6-59ed-432c-bc5a-2f84e8d7775f.svg" alt="" width="20" height="17" />
+              </div>
+              <div>
+                <div class="tele-title">Growth Telemetry</div>
+                <div class="tele-sub">0 to hero transformation</div>
+              </div>
+            </div>
+            <span class="live-tag"><span class="dot"></span>LIVE ANALYTICS</span>
+          </div>
+
+          <div class="profile-snip">
+            <div class="profile-left">
+              <img class="avatar" src="https://www.figma.com/api/mcp/asset/d62ce98c-d944-4700-8656-688983307661.png" alt="Vikram Mehta" />
+              <div style="min-width:0">
+                <div class="profile-name">
+                  <span>Vikram Mehta</span>
+                  <img src="https://www.figma.com/api/mcp/asset/6f1dd159-38d6-4211-803b-a0dbcb975aa3.svg" alt="" width="15" height="14" />
+                </div>
+                <div class="profile-role">SaaS Founder &amp; Angel Investor</div>
+              </div>
+            </div>
+            <span class="tag-reach">+1,840% REACH</span>
+          </div>
+
+          <div class="compare">
+            <div class="compare-box compare-before">
+              <div class="compare-label">Stage 0: Before</div>
+              <div class="compare-val"><span class="strike">42 views</span> <span style="font-size:12px;font-weight:600;" class="strike">/mo</span></div>
+              <div class="compare-note">
+                <img src="https://www.figma.com/api/mcp/asset/269564f2-488a-4cda-9e15-40af8a6f1319.svg" alt="" width="13" height="13" />
+                <span>0 Inbound DMs</span>
+              </div>
+            </div>
+            <div class="compare-box compare-after">
+              <div class="compare-glow"></div>
+              <div class="compare-label">Hero: Now</div>
+              <div class="compare-val big">84,200+</div>
+              <div class="compare-note">
+                <img src="https://www.figma.com/api/mcp/asset/dade39bd-78a5-4481-a010-134826694752.svg" alt="" width="11" height="13" />
+                <span>14 Inbounds / wk</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="spark-card">
+            <div class="spark-head">
+              <div class="spark-title">Weekly Impressional Trajectory</div>
+              <div class="spark-delta">+342% vs last 30d</div>
+            </div>
+            <img class="spark-svg" src="https://www.figma.com/api/mcp/asset/ec618318-f039-4cc7-8f61-619122045bfb.svg" alt="Impressions trend chart" />
+            <div class="spark-labels">
+              <span>Week 1 (Zero Start)</span>
+              <span>Week 4 (Strategic Voice)</span>
+              <span>Week 8 (Hero Authority)</span>
+            </div>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-item">
+              <img src="https://www.figma.com/api/mcp/asset/a45abe8e-5f21-476d-9105-9287aa372a14.svg" alt="" width="12" height="12" />
+              <span>Organic Algorithm Alignment</span>
+            </div>
+            <div class="trust-item"><span>Zero Automation Flags</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS ===================== -->
+  <section class="section results" id="results">
+    <div class="wrap">
+      <div style="display:flex;flex-direction:column;gap:48px;align-items:center;">
+        <div class="section-head">
+          <span class="eyebrow">Proven Outcomes</span>
+          <h2 class="h2">Real Growth. Real Results.</h2>
+          <p class="lead">Numbers do not lie. Here is what happens when disciplined messaging meets high-level executive positioning.</p>
+        </div>
+
+        <div class="kpi-strip">
+          <div class="kpi">
+            <div class="kpi-num" style="color:var(--accent)">100+</div>
+            <div class="kpi-label">Brands Launched</div>
+            <div class="kpi-desc">From nascent executives to high-volume creator authority</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num" style="color:var(--accent-2)">14.2M+</div>
+            <div class="kpi-label">Total Organic Reach</div>
+            <div class="kpi-desc">Direct algorithmic audience distribution without paid boosts</div>
+            <div class="kpi-glow"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num" style="color:#d6e3ff">94%</div>
+            <div class="kpi-label">Inbound Conversion Rate</div>
+            <div class="kpi-desc">Profile viewers turning into genuine inquiries &amp; partnerships</div>
+          </div>
+        </div>
+
+        <div class="outcome-grid">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-icon"><img src="https://www.figma.com/api/mcp/asset/a378f9be-5483-44c0-bc69-58d0e01538eb.svg" alt="" width="26" height="13" /></div>
+              <div class="h3">Helped 100+ professionals build authority on LinkedIn</div>
+              <p class="card-body">Engineered proprietary frameworks that elevate founders from silent observers to definitive industry keystones.</p>
+            </div>
+            <div class="card-foot" style="color:var(--accent)">
+              <img src="https://www.figma.com/api/mcp/asset/628ec061-0ab0-48f7-8dd8-0b33d1f85320.svg" alt="" width="16" height="16" />
+              <span>Validated Executive Playbook</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-icon"><img src="https://www.figma.com/api/mcp/asset/a358c9f6-7de0-4735-944d-be7927cd6607.svg" alt="" width="22" height="20" /></div>
+              <div class="h3">Generated consistent inbound leads through content</div>
+              <p class="card-body">Turn cold outreach into warm inbound discovery. Your content works 24/7 as a high-converting pipeline catalyst.</p>
+            </div>
+            <div class="card-foot" style="color:var(--accent-2)">
+              <img src="https://www.figma.com/api/mcp/asset/8716cf1c-0653-47ac-83c6-df32cc321d73.svg" alt="" width="18" height="17" />
+              <span>Zero Spamming Required</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-icon"><img src="https://www.figma.com/api/mcp/asset/fe7b91a1-fe50-4f4e-9723-0b57382a512f.svg" alt="" width="22" height="13" /></div>
+              <div class="h3">Built personal brands from absolute zero</div>
+              <p class="card-body">No preexisting following or writer qualifications needed. We formulate the tone, voice, and subject narrative tailored to you.</p>
+            </div>
+            <div class="card-foot" style="color:#d6e3ff">
+              <img src="https://www.figma.com/api/mcp/asset/5a544bd1-cf34-43ab-9fc3-7772a090c006.svg" alt="" width="17" height="14" />
+              <span>Zero to Hero Blueprint</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-icon"><img src="https://www.figma.com/api/mcp/asset/be766a2f-9568-4386-81ca-5422ad6eebfa.svg" alt="" width="22" height="22" /></div>
+              <div class="h3">Content that reaches thousands organically</div>
+              <p class="card-body">Engineered hooks, high retention narrative structures, and algorithm-favored formats that create compounding distribution.</p>
+            </div>
+            <div class="card-foot" style="color:var(--accent)">
+              <img src="https://www.figma.com/api/mcp/asset/afdc6dcd-5f97-41c1-8eda-0b111c01be5a.svg" alt="" width="17" height="11" />
+              <span>Compounding Impressions</span>
+            </div>
+          </div>
+
+          <div class="card card-wide">
+            <div class="card-head">
+              <div class="card-icon"><img src="https://www.figma.com/api/mcp/asset/7d2d85c5-ec25-4614-ac88-8b63df29f8cf.svg" alt="" width="22" height="20" /></div>
+              <div class="h3">Profiles that convert views into opportunities</div>
+              <p class="card-body">Turning raw impressions into commercial value: high-ticket advisory roles, speaking invites, press quotes, and enterprise deals.</p>
+            </div>
+            <div class="card-foot" style="color:var(--accent-2)">
+              <img src="https://www.figma.com/api/mcp/asset/c1995f16-35dd-48de-92e3-bdfe2c18d008.svg" alt="" width="15" height="15" />
+              <span>Measurable Pipeline Outcomes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="closing-banner" style="width:100%">
+          <div class="closing-left">
+            <div class="closing-icon">
+              <img src="https://www.figma.com/api/mcp/asset/106272cd-bf4a-490d-a4ea-dde3903a3122.svg" alt="" width="22" height="21" />
+            </div>
+            <div>
+              <div class="closing-title">This isn't luck. It's a system that works.</div>
+              <div class="closing-desc">Data-backed execution removing the variability of social media performance.</div>
+            </div>
+          </div>
+          <a class="btn-accent" href="#audit">Claim System Access</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== AUDIT ===================== -->
+  <section class="audit" id="audit">
+    <div class="audit-card">
+      <div class="audit-glow"></div>
+      <div class="audit-grid">
+        <div class="audit-left">
+          <span class="pricing-pill">
+            <span class="dot"></span>
+            <span>Limited opportunity • ₹1 only</span>
+          </span>
+          <h2 class="audit-h2">Get a Complete LinkedIn Audit for<br />Just Rupee 1</h2>
+          <p class="audit-sub">Not a sales call. A real breakdown of what's working, what's not, and what to fix.</p>
+
+          <div class="pillars">
+            <div class="pillar">
+              <img src="https://www.figma.com/api/mcp/asset/0b16191a-b50e-429d-9233-6c1421ef4ba1.svg" alt="" />
+              <div>
+                <div class="pillar-title">Profile Review</div>
+                <div class="pillar-desc">Headline, banner, &amp; strategic positioning assessment</div>
+              </div>
+            </div>
+            <div class="pillar">
+              <img src="https://www.figma.com/api/mcp/asset/0b16191a-b50e-429d-9233-6c1421ef4ba1.svg" alt="" />
+              <div>
+                <div class="pillar-title">Content Gap Analysis</div>
+                <div class="pillar-desc">Identify missed algorithmic opportunities and topics</div>
+              </div>
+            </div>
+            <div class="pillar">
+              <img src="https://www.figma.com/api/mcp/asset/0b16191a-b50e-429d-9233-6c1421ef4ba1.svg" alt="" />
+              <div>
+                <div class="pillar-title">Personal Brand Direction</div>
+                <div class="pillar-desc">Tailored voice framing to match your market prestige</div>
+              </div>
+            </div>
+            <div class="pillar">
+              <img src="https://www.figma.com/api/mcp/asset/0b16191a-b50e-429d-9233-6c1421ef4ba1.svg" alt="" />
+              <div>
+                <div class="pillar-title">Clear Action Steps</div>
+                <div class="pillar-desc">Tactical roadmap to instantly improve organic reach</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote-box">
+            <p>"Why Rupee 1? Because once you see the value, you'll know what to do next."</p>
+          </div>
+
+          <div class="audit-actions">
+            <a class="btn btn-primary"
+               href="https://payments.cashfree.com/forms/getaudit"
+               target="_blank" rel="noopener">
+              <span>Book My Audit Now</span>
+              <img src="https://www.figma.com/api/mcp/asset/c9121111-4c6e-48cc-ad25-0744b00bd2ea.svg" alt="" width="15" height="17" />
+            </a>
+            <div class="audit-note">
+              <img src="https://www.figma.com/api/mcp/asset/0c62969e-3405-4e75-81d1-88d9a9365ac3.svg" alt="" width="11" height="14" />
+              <span>Instant slot confirmation • 100% actionable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="telemetry-audit">
+          <div class="tele-head">
+            <div class="diag-label">Audit Diagnostic Breakdown</div>
+            <span class="diag-value">VALUE: ₹4,999</span>
+          </div>
+          <div class="gauges">
+            <div class="gauge-row">
+              <div class="gauge-top"><span>Profile Authority Score</span><b style="color:var(--accent)">34 / 100 (Critical Fixes)</b></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:34%;background:var(--accent)"></div></div>
+            </div>
+            <div class="gauge-row">
+              <div class="gauge-top"><span>Content Hook Engagement</span><b style="color:var(--error)">Underperforming</b></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:22%;background:var(--error)"></div></div>
+            </div>
+            <div class="gauge-row">
+              <div class="gauge-top"><span>Commercial Inbound Readiness</span><b style="color:var(--accent-2)">Unoptimized</b></div>
+              <div class="gauge-track"><div class="gauge-fill" style="width:18%;background:var(--accent-2)"></div></div>
+            </div>
+          </div>
+          <div class="diag-foot">
+            <img src="https://www.figma.com/api/mcp/asset/50c4c47f-71c3-4053-926f-0c2e0169b56f.svg" alt="" width="23" height="19" />
+            <div>
+              <strong>Your 45-Minute 1-on-1 Session</strong>
+              <span>Delivered live via private video briefing.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LEAD FORM ===================== -->
+  <section class="lead-section">
+    <div class="wrap">
+      <div class="lead-grid">
+        <div class="lead-left">
+          <span class="eyebrow">Strategic Roadmap</span>
+          <h2 class="lead-h2">Let's Build Your LinkedIn<br />Presence Together</h2>
+          <p class="lead-intro">Tell us a bit about you — and we'll show you exactly how to grow.</p>
+
+          <div class="pitch-list">
+            <div class="pitch-item">
+              <div class="pitch-icon"><img src="https://www.figma.com/api/mcp/asset/fac80648-cb47-4f57-a710-195ec380602c.svg" alt="" width="14" height="15" /></div>
+              <div>
+                <div class="pitch-title">Strategic Content Roadmap</div>
+                <div class="pitch-desc">90 days of structured themes matching your exact revenue ambitions.</div>
+              </div>
+            </div>
+            <div class="pitch-item">
+              <div class="pitch-icon"><img src="https://www.figma.com/api/mcp/asset/a5e60aee-3546-4538-a5ac-4e0f9323b606.svg" alt="" width="17" height="14" /></div>
+              <div>
+                <div class="pitch-title">Executive Voice Positioning</div>
+                <div class="pitch-desc">Eliminate boring corporate jargon. Establish authentic thought leadership.</div>
+              </div>
+            </div>
+            <div class="pitch-item">
+              <div class="pitch-icon"><img src="https://www.figma.com/api/mcp/asset/564b18d3-c7e3-452c-abc7-092b158ecec5.svg" alt="" width="12" height="15" /></div>
+              <div>
+                <div class="pitch-title">Weekly Engagement Engine</div>
+                <div class="pitch-desc">Structured networking protocols to spark high-value dialogues in comments.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trust-line">
+            <img src="https://www.figma.com/api/mcp/asset/dc051c6c-1ad0-4c16-9324-150f588854ff.svg" alt="" width="18" height="18" />
+            <span>No spam. No fluff. Just actionable clarity.</span>
+          </div>
+        </div>
+
+        <div class="lead-right">
+          <div class="form-card">
+            <div class="form-head">
+              <div class="form-title">Request Your Customized Growth Plan</div>
+              <div class="form-sub">Fill out the credentials below to start your transition.</div>
+            </div>
+
+            <form id="leadForm" novalidate>
+              <div class="field">
+                <label for="name">Full Name</label>
+                <div class="input-wrap">
+                  <img src="https://www.figma.com/api/mcp/asset/c4ab5fc4-1417-4a88-a51e-0bb3d17609e6.svg" alt="" />
+                  <input id="name" name="name" type="text" placeholder="e.g. Alex Morgan" autocomplete="name" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="email">Work Email</label>
+                <div class="input-wrap">
+                  <img src="https://www.figma.com/api/mcp/asset/6f518d70-03b5-4c66-8185-3790dc6b75ad.svg" alt="" />
+                  <input id="email" name="email" type="email" placeholder="alex@company.com" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone / WhatsApp</label>
+                <div class="input-wrap">
+                  <img src="https://www.figma.com/api/mcp/asset/d6ee93c5-60ec-4dbe-83be-d940117185c0.svg" alt="" />
+                  <input id="phone" name="phone" type="tel" placeholder="+91 / +1 (555) 000-0000" autocomplete="tel" required />
+                </div>
+              </div>
+
+              <button type="submit" id="submitBtn" class="btn submit-btn">
+                <span>Get My Growth Plan</span>
+                <img src="https://www.figma.com/api/mcp/asset/0f3c61a7-69c6-47e7-92d2-4823d276e9c9.svg" alt="" width="13" height="13" />
+              </button>
+
+              <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+              <div class="micro">100% confidential. No sales pressure.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REVIEWS ===================== -->
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="reviews-wrap">
+        <div class="reviews-head">
+          <span class="eyebrow">Client Testimonials</span>
+          <h2 class="h2">What Our Clients Say</h2>
+          <p class="lead">Read verified feedback from founders and industry practitioners who escaped algorithm obscurity.</p>
+        </div>
+
+        <div class="testimonials">
+          <div class="testimonial">
+            <div class="stars">
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+            </div>
+            <p class="quote">"I had zero presence before this. Within weeks, I started getting inbound messages and profile views."</p>
+            <div class="author">
+              <img class="avatar avatar-48" src="https://www.figma.com/api/mcp/asset/1dc17ed9-3819-4cd8-b42c-85a3af552ba3.png" alt="Arjun Nair" />
+              <div>
+                <div class="author-name">Arjun Nair</div>
+                <div class="author-role">Founder &amp; Tech Executive</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="stars">
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+            </div>
+            <p class="quote">"The clarity I got here saved me months of trial and error."</p>
+            <div class="author">
+              <img class="avatar avatar-48" src="https://www.figma.com/api/mcp/asset/bee68866-2cea-4b87-a2c0-27530a80188b.png" alt="Priya Seshadri" />
+              <div>
+                <div class="author-name">Priya Seshadri</div>
+                <div class="author-role">Management Consultant</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="stars">
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+            </div>
+            <p class="quote">"It's not just content — it's a full strategy. That's what made the difference."</p>
+            <div class="author">
+              <img class="avatar avatar-48" src="https://www.figma.com/api/mcp/asset/969afa30-6172-4894-bd43-05116977c026.png" alt="Rohan Desai" />
+              <div>
+                <div class="author-name">Rohan Desai</div>
+                <div class="author-role">B2B SaaS Growth Lead</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="stars">
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+              <img src="https://www.figma.com/api/mcp/asset/c6152c34-7bad-4e55-a631-2110f4cd83bb.svg" alt="★" />
+            </div>
+            <p class="quote">"I finally understand how LinkedIn actually works."</p>
+            <div class="author">
+              <img class="avatar avatar-48" src="https://www.figma.com/api/mcp/asset/b3a094b8-e934-4792-bf45-8519287348ba.png" alt="Ananya Sen" />
+              <div>
+                <div class="author-name">Ananya Sen</div>
+                <div class="author-role">Senior Product Strategist</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-closing">Results speak louder than promises.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="faq">
+    <div class="faq-wrap">
+      <div class="faq-head">
+        <span class="eyebrow">Answers &amp; Details</span>
+        <h2 class="h2">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><div class="h3">Who is this service for?</div><img src="https://www.figma.com/api/mcp/asset/63aae246-73df-42d9-a418-d2fcb25f2b27.svg" alt="" /></div>
+        <div class="faq-item"><div class="h3">Do you create content for me?</div><img src="https://www.figma.com/api/mcp/asset/63aae246-73df-42d9-a418-d2fcb25f2b27.svg" alt="" /></div>
+        <div class="faq-item"><div class="h3">How long does it take to see results?</div><img src="https://www.figma.com/api/mcp/asset/63aae246-73df-42d9-a418-d2fcb25f2b27.svg" alt="" /></div>
+        <div class="faq-item"><div class="h3">Is this only for job seekers?</div><img src="https://www.figma.com/api/mcp/asset/63aae246-73df-42d9-a418-d2fcb25f2b27.svg" alt="" /></div>
+        <div class="faq-item"><div class="h3">What makes this different?</div><img src="https://www.figma.com/api/mcp/asset/63aae246-73df-42d9-a418-d2fcb25f2b27.svg" alt="" /></div>
+        <div class="faq-item"><div class="h3">Do I need prior experience on LinkedIn?</div><img src="https://www.figma.com/api/mcp/asset/63aae246-73df-42d9-a418-d2fcb25f2b27.svg" alt="" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="brand">
+          <div class="brand-row">
+            <img src="https://www.figma.com/api/mcp/asset/f75e8ac4-b5aa-46e3-a8c1-aa6c3f2fda0b.svg" alt="" width="23" height="14" />
+            <div class="brand-name">Kinetic<span>In</span></div>
+          </div>
+          <div class="brand-tag">Building personal brands that stand out — not blend in.</div>
+        </div>
+        <nav class="quick-links">
+          <a href="#">Home</a><span class="sep">|</span>
+          <a href="#results">Services</a><span class="sep">|</span>
+          <a href="#audit" class="hl">Book Audit</a><span class="sep">|</span>
+          <a href="#lead">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <div class="contact">
+          <img src="https://www.figma.com/api/mcp/asset/4750676c-11e4-4363-96b3-33bbf853db3f.svg" alt="" width="15" height="14" />
+          <span>Have questions? Reach out anytime.</span>
+          <a href="mailto:hello@kineticin.com">hello@kineticin.com</a>
+        </div>
+        <div class="copy">2026 All Rights Reserved. Built for those who are ready to be seen.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ----- Google Apps Script endpoint (Code.gs deployment) -----
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8kOTldVYTkO_bmFRAXM3mRYt-y0BQ3-iml-r8D-inaCziUYmxm_WBv99AnitC4YYE/exec";
+
+    const form = document.getElementById("leadForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusEl = document.getElementById("formStatus");
+
+    function setStatus(message, type) {
+      statusEl.textContent = message;
+      statusEl.className = "form-status " + (type || "");
+    }
+
+    function setLoading(isLoading) {
+      submitBtn.disabled = isLoading;
+      submitBtn.querySelector("span").textContent = isLoading ? "Sending..." : "Get My Growth Plan";
+    }
+
+    function showSuccess() {
+      setLoading(false);
+      setStatus("Thanks! We'll reach out shortly with your growth plan.", "ok");
+      form.reset();
+    }
+
+    function showError() {
+      setLoading(false);
+      setStatus("Something went wrong. Please try again.", "err");
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      if (!name || !email || !phone) {
+        setStatus("Please fill in name, email and phone.", "err");
+        return;
+      }
+
+      const url = SCRIPT_URL + "?" + new URLSearchParams({ name: name, email: email, phone: phone });
+
+      setStatus("", "");
+      setLoading(true);
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(() => showSuccess())
+        .catch(() => showError());
+    });
+  </script>
+</body>
+</html>
